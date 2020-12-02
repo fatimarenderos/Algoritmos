@@ -23,9 +23,11 @@ bool colocadora(char** gameMatrix, int** numberMatrix, int x, int y){
     }
 
     //Aqui ya nos aseguramos que la matriz de juego si tiene una X en esa coordenada, por ende, si puede cambiarse
-    char ejemplo = '0' + placeholder;
-    gameMatrix[x][y] = ejemplo ;
-    cout<<"El numero es: "<< ejemplo <<endl;
+    //Se castea el valor int conseguido a un char
+    char tarjeta = '0' + placeholder;
+    //El valor casteado se guarda en la matriz de juego
+    gameMatrix[x][y] = tarjeta ;
+
     return true;
 }
 
@@ -63,18 +65,19 @@ void mostrandoCartas(char** gameMatrix){
 }
 
 bool gameChanger(char** gameMatrix){
-bool win = false;
+    bool win = false;
 
-for (int i = 0; i < 4; i++){
-        for (int j = 0; j < 4; j++)
-        {
-            //Si algo dentro de la matriz no es un guion, significa que todavia hay trajetas sin adivinar/voltear
-            if (gameMatrix[j][i] != '-');
-            return win;
+    for (int i = 0; i < 4 ; i++){
+            for (int j = 0; j < 4; j++)
+            {
+                //Si algo dentro de la matriz no es un guion, significa que todavia hay trajetas sin adivinar/voltear
+                if (gameMatrix[j][i] != '-'){
+                        return win;
+                }
+            }
         }
-    }
-//En este caso, todo esta vacio (solo guiones) y se dice que ha ganado
-win = true;
+    //En este caso, todo esta vacio (solo guiones) y se dice que ha ganado
+    win = true;
 
 return win;
 }
@@ -119,8 +122,10 @@ comparadora(gameMatrix, x1, y1, x2, y2);
 mostrandoCartas(gameMatrix);
 
 //Verificando si la matriz esta completamente llena de guiones
+bool gamefinished = gameChanger(gameMatrix);
+cout<<endl<<"La matriz esta completa? "<<gamefinished<<endl;
 //Si la funcion nos devuelve false, no esta completa
-if(!gameChanger(gameMatrix)){
+if(!gamefinished){
     //Se le suma uno al puntaje
     puntaje -= 10;
     cout<<"Su puntaje original es: "<<puntaje<<endl;
@@ -176,6 +181,7 @@ cout<<"Su puntaje original es: "<<puntaje<<endl;
 turnoFunction(matrixchar, matrix, puntaje);
 
 cout<<"Su puntaje original es: "<<puntaje<<endl;
+cout<<"GAME OVER";
 
     return 0;
 }
