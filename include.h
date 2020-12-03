@@ -549,7 +549,7 @@ bool colocadora(char** gameMatrix, char** numberMatrix, int x, int y, int size){
 
     //Verificando si las coordenadas no contienen valores negativos
     if( x<0 || y<0 ){
-        cout<<"Por favor ingrese valores de (x,y) que sean positivos y vallidos"<<endl;
+        cout<<"Por favor ingrese valores de (x,y) que sean positivos y validos"<<endl;
         return false;
     }
 
