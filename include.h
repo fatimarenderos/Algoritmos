@@ -5,6 +5,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <cctype>
+#include <string>
 using namespace std;
 
 string funName()
@@ -537,19 +539,30 @@ char **funLLenarMatrixInt(int nivel)
 }
 
 //Logica de turno de jugador
-bool colocadora(char** gameMatrix, char** numberMatrix, int x, int y, int size){
+bool colocadora(char** gameMatrix, char** numberMatrix, string newX, string newY, int size){
 
     bool confirmation = false;
 
-    //Verificando si las coordenadas son valores dentro de los limites de la matriz
-    if( x>=size || y>=size ){
-        cout<<"Por favor ingrese valores de (x,y) que no sobre pasen los limites de la matriz"<<endl;
+    //Haciendo la asignacion de true/false dependiendo de si el primer digito del string tomado en un numero o un caracter
+    //Esto eliminara las letras y los negativos de una sola vez
+    bool letterX = isdigit(newX.at(0));
+    bool letterY = isdigit(newY.at(0));
+
+    //Verificando si las coordenadas no son letras o negativos
+    if( !letterX || !letterY ){
+        cout<<"Por favor ingrese valores de (x,y) que no sean letras ni negativos! Se admiten solo numeros positivos"<<endl;
         return false;
     }
 
-    //Verificando si las coordenadas no contienen valores negativos
-    if( x<0 || y<0 ){
-        cout<<"Por favor ingrese valores de (x,y) que sean positivos y validos"<<endl;
+    //Al pasar a aqui, nos aseguramos que no hay letras ni negativos validados
+    //Casteando las coordenadas string a int, ya que podemos recibir uno o varios numeros
+    int x = stoi(newX);
+    int y = stoi(newY);
+
+
+        //Verificando si las coordenadas son valores dentro de los limites de la matriz
+    if( x>=size || y>=size || x<0 || y<0 ){
+        cout<<"Por favor ingrese valores de (x,y) que no sobre pasen los limites de la matriz"<<endl;
         return false;
     }
 
@@ -573,8 +586,14 @@ bool colocadora(char** gameMatrix, char** numberMatrix, int x, int y, int size){
     return true;
 }
 
-void comparadora(char** gameMatrix, int x1, int y1, int x2, int y2){
-        
+void comparadora(char** gameMatrix, string newx1, string newy1, string newx2, string newy2){
+
+    //Parseando los char a int para poder usarlos como coordenadas de matrices (se le resta 48 por que ascii comienza desde el 48)
+    int x1 = stoi(newx1);
+    int x2 = stoi(newx2);
+    int y1 = stoi(newy1);
+    int y2 = stoi(newy2);
+
     //Se guardan las dos tarjetas en variables
     char pos1 = gameMatrix[x1][y1];
     char pos2 = gameMatrix[x2][y2];
@@ -631,10 +650,10 @@ return win;
 
 void turnoFunction(char** gameMatrix, char** numberMatrix, int& puntaje, int size){
 //Creacion de variables
-int x1=0;
-int x2=0;
-int y1=0;
-int y2=0;
+string x1;
+string x2;
+string y1;
+string y2;
 bool confirmation;
 bool gamefinished;
 
