@@ -10,10 +10,12 @@ using namespace std;
 string funName()
 {
     string nombre;
-    cout << "Ingrese su nombre ";
+    cout << "Ingrese su nombre: ";
     cin >> nombre;
     return nombre;
 }
+
+void mostrandoCartas(char** gameMatrix, int size);
 
 int aleatorio_en_rango(int minimo, int maximo)
 {
@@ -422,11 +424,11 @@ char **funLLenarMatrixChar(int nivel)
         for (int j = 0; j < sizeMatrix; j++)
         {
             MatrixMemory[i][j] = 'X';
-            cout << MatrixMemory[i][j] << " ";
+            //cout << MatrixMemory[i][j] << " ";
         }
-        cout << endl;
+        //cout << endl;
     }
-    cout << endl;
+    //cout << endl;
 
     // LLENANDO MATRIZ DE JUEGO
     int contCoor = 0;
@@ -494,7 +496,7 @@ char **funLLenarMatrixChar(int nivel)
     return MatrixMemory;
 }
 
-int **funLLenarMatrixInt(int nivel)
+char **funLLenarMatrixInt(int nivel)
 {
 
     int sizeMatrix;
@@ -514,20 +516,22 @@ int **funLLenarMatrixInt(int nivel)
         break;
     }
 
-    int **MatrixPlay = new int *[sizeMatrix];
+    char **MatrixPlay = new char *[sizeMatrix];
 
     for (int i = 0; i < sizeMatrix; i++)
     {
-        MatrixPlay[i] = new int[sizeMatrix];
+        MatrixPlay[i] = new char[sizeMatrix];
 
         for (int j = 0; j < sizeMatrix; j++)
         {
-            MatrixPlay[i][j] = 0;
-            cout << MatrixPlay[i][j] << " ";
+            MatrixPlay[i][j] = 'X';
+            //cout << MatrixPlay[i][j] << " ";
         }
-        cout << endl;
+        //cout << endl;
     }
-    cout << endl;
+    //cout << endl;
+
+    mostrandoCartas(MatrixPlay, sizeMatrix);
 
     return MatrixPlay;
 }

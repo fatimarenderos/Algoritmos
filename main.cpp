@@ -19,11 +19,12 @@ int main(int argc, char const *argv[])
          << "1. Nivel facil " << endl
          << "2. Nivel intermedio " << endl
          << "3. Nivel dificil " << endl
-         << "Ingrese el nivel de complejidad  " << endl;
+         << "Ingrese el nivel de complejidad: " << endl;
 
     cin >> nivel;
+    cout<<endl;
 
-    int **MatrixPlay = funLLenarMatrixInt(nivel);
+    char **MatrixPlay = funLLenarMatrixInt(nivel);
     char **MatrixMemory = funLLenarMatrixChar(nivel);
 
     switch (nivel)
@@ -44,28 +45,12 @@ int main(int argc, char const *argv[])
         break;
     }
 
-    for (int i = 0; i < sizeMatrix; i++)
-    {
+    mostrandoCartas(MatrixMemory, sizeMatrix);
 
-        for (int j = 0; j < sizeMatrix; j++)
-        {
-            cout << MatrixPlay[i][j] << " ";
-        }
-        cout << endl;
-    }
+    turnoFunction(MatrixPlay, MatrixMemory, puntaje, sizeMatrix);
 
-    cout << endl;
-
-    for (int i = 0; i < sizeMatrix; i++)
-    {
-        for (int j = 0; j < sizeMatrix; j++)
-        {
-            cout << MatrixMemory[i][j] << " ";
-        }
-        cout << endl;
-    }
-
-    //turnoFunction(MatrixPlay, MatrixMemory, puntaje, sizeMatrix);
+    cout<<endl<<"GAME OVER"<<endl;
+    cout<<endl<<"Su puntaje final es: "<<puntaje<<endl;
 
     /*
     int score = 1;
