@@ -10,7 +10,7 @@
 
 using namespace std;
 
-bool colocadora(char** gameMatrix, int** numberMatrix, int x, int y, int size){
+/* bool colocadora(char** gameMatrix, char** numberMatrix, int x, int y, int size){
 
     bool confirmation = false;
 
@@ -38,10 +38,10 @@ bool colocadora(char** gameMatrix, int** numberMatrix, int x, int y, int size){
 
     //Aqui ya nos aseguramos que la matriz de juego si tiene una X en esa coordenada, por ende, si puede cambiarse
     //Se castea el valor int conseguido a un char
-    char tarjeta = '0' + placeholder;
+    //char tarjeta = '0' + placeholder;
 
-    //El valor casteado se guarda en la matriz de juego
-    gameMatrix[x][y] = tarjeta ;
+    //El valor char se guarda en la matriz de juego en la posicion deseada
+    gameMatrix[x][y] = placeholder ;
 
     return true;
 }
@@ -102,7 +102,7 @@ bool gameChanger(char** gameMatrix, int size){
 return win;
 }
 
-void turnoFunction(char** gameMatrix, int** numberMatrix, int& puntaje, int size){
+void turnoFunction(char** gameMatrix, char** numberMatrix, int& puntaje, int size){
 //Creacion de variables
 int x1=0;
 int x2=0;
@@ -171,11 +171,12 @@ int main(void){
 int puntaje= 1800;
 int size= 6;
 
+
 //Creando la matriz
-    int** matrix = new int*[size];
+    char** matrix = new char*[size];
 
     for (int i = 0; i < size; i++){
-            matrix[i] = new int[size];
+            matrix[i] = new char[size];
     }
 
 //Llenando la matriz
@@ -183,9 +184,9 @@ int size= 6;
         for (int j = 0; j < size; j++)
         {
             if(j%2==0){
-                matrix[j][i] = 4;
+                matrix[j][i] = '4';
             }else{
-                matrix[j][i] = 5;
+                matrix[j][i] = '5';
             }
         }
     }
@@ -214,4 +215,4 @@ cout<<"Su puntaje final es: "<<puntaje<<endl;
 cout<<"GAME OVER";
 
     return 0;
-}
+} */

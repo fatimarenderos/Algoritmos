@@ -11,6 +11,7 @@ int main(int argc, char const *argv[])
 {
     Node *inicio = NULL;
     int nivel = 0, sizeMatrix;
+    int puntaje =0;
 
     string name = funName();
 
@@ -29,12 +30,15 @@ int main(int argc, char const *argv[])
     {
     case 1:
         sizeMatrix = 4;
+        puntaje = 1800;
         break;
     case 2:
         sizeMatrix = 6;
+        puntaje = 2800;
         break;
     case 3:
         sizeMatrix = 8;
+        puntaje: 4200;
         break;
     default:
         break;
@@ -60,6 +64,8 @@ int main(int argc, char const *argv[])
         }
         cout << endl;
     }
+
+    //turnoFunction(MatrixPlay, MatrixMemory, puntaje, sizeMatrix);
 
     /*
     int score = 1;
