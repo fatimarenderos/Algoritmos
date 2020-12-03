@@ -408,7 +408,7 @@ char **funLLenarMatrixChar(int nivel)
 
     for (int i = 0; i < intNumPares; i++)
     {
-        listNumRandom[i] = aleatorio_en_rango(33, 175);
+        listNumRandom[i] = aleatorio_en_rango(33, 100);
         //cout << listNumRandom[i] << " ";
     }
     cout << endl;
@@ -531,7 +531,7 @@ char **funLLenarMatrixInt(int nivel)
     }
     //cout << endl;
 
-    mostrandoCartas(MatrixPlay, sizeMatrix);
+    //mostrandoCartas(MatrixPlay, sizeMatrix);
 
     return MatrixPlay;
 }

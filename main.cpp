@@ -39,13 +39,14 @@ int main(int argc, char const *argv[])
         break;
     case 3:
         sizeMatrix = 8;
-        puntaje: 4200;
+        puntaje = 4200;
         break;
     default:
         break;
     }
 
-    mostrandoCartas(MatrixMemory, sizeMatrix);
+    //Esto es un comodin por si el jugador quiere ver la matriz inicial
+    //mostrandoCartas(MatrixMemory, sizeMatrix);
 
     turnoFunction(MatrixPlay, MatrixMemory, puntaje, sizeMatrix);
 
