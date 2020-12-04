@@ -301,30 +301,7 @@ char **funLLenarMatrixChar(int nivel)
 
         };
 
-    /*
-    for (int i = 0; i < sizeMatrix * sizeMatrix; i++)
-    {
-        for (int j = 0; j < 2; j++)
-        {
-            switch (sizeMatrix)
-            {
-            case 4:
-                cout << listcoordenadas[i][j] << " ";
-                break;
-            case 6:
-                cout << listcoordenadas6[i][j] << " ";
-                break;
-            case 8:
-                cout << listcoordenadas[i][j] << " ";
-                break;
-            default:
-                break;
-            }
-        }
-        cout << endl;
-    }
-    cout << endl;
-*/
+ 
     srand(getpid());
 
     for (int i = 0; i < sizeMatrix * sizeMatrix; i++)
@@ -371,30 +348,7 @@ char **funLLenarMatrixChar(int nivel)
         }
     }
 
-    /* for (int i = 0; i < sizeMatrix * sizeMatrix; i++)
-    {
-        for (int j = 0; j < 2; j++)
-        {
-            switch (sizeMatrix)
-            {
-            case 4:
-                cout << listcoordenadas[i][j] << " ";
-                break;
-            case 6:
-                cout << listcoordenadas6[i][j] << " ";
-                break;
-            case 8:
-                cout << listcoordenadas8[i][j] << " ";
-                break;
-            default:
-                break;
-            }
-        }
-        cout << endl;
-    }
-    cout << endl;
 
-    */
 
     // INICIALIZANDO LISTA DE PAREJAS EN MEMORIA
     int intNumPares = sizeMatrix * sizeMatrix / 2;
@@ -406,9 +360,8 @@ char **funLLenarMatrixChar(int nivel)
     for (int i = 0; i < intNumPares; i++)
     {
         listNumRandom[i] = NumRangRandom(33, 100);
-        //cout << listNumRandom[i] << " ";
     }
-    cout << endl;
+
 
     // DEFINIENDO COOR DE MATRIZ 4X4 Y REORDENANDOLOS
 
@@ -421,11 +374,11 @@ char **funLLenarMatrixChar(int nivel)
         for (int j = 0; j < sizeMatrix; j++)
         {
             MatrixMemory[i][j] = 'X';
-            //cout << MatrixMemory[i][j] << " ";
+           
         }
-        //cout << endl;
+        
     }
-    //cout << endl;
+   
 
     // LLENANDO MATRIZ DE JUEGO
     int contCoor = 0;
@@ -478,18 +431,7 @@ char **funLLenarMatrixChar(int nivel)
         }
     }
 
-    /*
-    for (int i = 0; i < sizeMatrix; i++)
-    {
-        for (int j = 0; j < sizeMatrix; j++)
-        {
-
-            cout << MatrixMemory[i][j] << " ";
-        }
-        cout << endl;
-    }
-*/
-
+ 
     return MatrixMemory;
 }
 
@@ -522,13 +464,10 @@ char **funLLenarMatrixInt(int nivel)
         for (int j = 0; j < sizeMatrix; j++)
         {
             MatrixPlay[i][j] = 'X';
-            //cout << MatrixPlay[i][j] << " ";
+            
         }
-        //cout << endl;
+        
     }
-    //cout << endl;
-
-    //mostrandoCartas(MatrixPlay, sizeMatrix);
 
     return MatrixPlay;
 }
