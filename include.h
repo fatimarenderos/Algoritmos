@@ -8,26 +8,27 @@
 #include <cctype>
 #include <string>
 using namespace std;
-
+//funcion que solicita nombre de jugador
 string funName()
 {
+    //Solicita y retorna nombre
     string nombre;
-    cout << "Ingrese su nombre: ";
+    cout << "Ingrese su nombre ";
     cin >> nombre;
     return nombre;
 }
-
-void mostrandoCartas(char** gameMatrix, int size);
-
-int aleatorio_en_rango(int minimo, int maximo)
+//funcion que recibe un maximo y un minimo, genera y retorna numeros comprendidos entre estos limites
+int NumRangRandom(int minimo, int maximo)
 {
     return minimo + rand() / (RAND_MAX / (maximo - minimo + 1) + 1);
 }
+//Funcion que genera n cantidad de  numeros random y los retorna
 int NumRandom(int n)
 {
     int numero = rand() % n;
     return numero;
 }
+//Struct de nodo para el jugador (nombre y puntaje) 
 struct Node
 {
     int number;
@@ -35,7 +36,7 @@ struct Node
     Node *next;
     Node *prev;
 };
-
+//funcion que inserta al inicio cada nuevo nodo (jugador y puntaje ingresado)
 void insertarInicio(Node **list, int new_number, string cadena)
 {
     Node *new_node = new Node();
@@ -49,7 +50,7 @@ void insertarInicio(Node **list, int new_number, string cadena)
 
     (*list) = new_node;
 }
-
+//funcion que inserta al final cada nuevo nodo(jugador y puntaje ingresado)
 void insertarFinal(Node **list, int new_number, string cadena)
 {
     Node *new_node = new Node();
@@ -72,7 +73,7 @@ void insertarFinal(Node **list, int new_number, string cadena)
     new_node->prev = last;
     return;
 }
-
+//Funcion que elimina un nodo ingresado
 void deleteNode(Node **list, Node *del)
 {
     if (*list == NULL || del == NULL)
@@ -90,7 +91,7 @@ void deleteNode(Node **list, Node *del)
     free(del);
     return;
 }
-
+//Funcion que encuentra nodo por numero
 Node *findNodeByNumber(Node **list, int number)
 {
     Node *last = *list;
@@ -98,15 +99,12 @@ Node *findNodeByNumber(Node **list, int number)
     while (last)
     {
         if (last->number == number)
-        {
             return last;
-        }
         last = last->next;
     }
-
     return NULL;
 }
-
+//Funcion que encuentra nodo por string
 Node *findNodeByString(Node **list, string cadena)
 {
     Node *last = *list;
@@ -114,40 +112,20 @@ Node *findNodeByString(Node **list, string cadena)
     while (last)
     {
         if (last->cadena == cadena)
-        {
             return last;
-        }
         last = last->next;
     }
 
     return NULL;
 }
-
+//Funcion que borra nodo auxiliar
 void deleteNodeAux(Node **list, int number)
 {
     Node *nodoBorrar = findNodeByNumber(list, number);
     deleteNode(list, nodoBorrar);
 }
 
-void showList(Node *node)
-{
-    Node *last;
-    cout << "\nMostrando list hacia adelante \n";
-    while (node != NULL)
-    {
-        cout << " " << node->number << " ";
-        last = node;
-        node = node->next;
-    }
-
-    cout << "\nMostrando list hacia atras \n";
-    while (last != NULL)
-    {
-        cout << " " << last->number << " ";
-        last = last->prev;
-    }
-}
-
+//funcion que intercambia nodos
 void swap(Node *a, Node *b)
 {
     Node t = *a;
@@ -156,7 +134,7 @@ void swap(Node *a, Node *b)
     b->number = t.number;
     b->cadena = t.cadena;
 }
-
+//Funcion que encuntra nodo por posicion 
 Node *findNodeByPosition(Node *node, int position)
 {
     Node *last, *aux = node;
@@ -168,19 +146,17 @@ Node *findNodeByPosition(Node *node, int position)
     }
     return aux;
 }
+//Funcion que parte la lista 
 
 int partition(Node **list, int low, int high)
 {
     Node *last = *list;
     Node *pivot = findNodeByPosition(last, high);
-    int i = (low - 1), result;
+    int i = (low - 1);
     for (int j = low; j <= high - 1; j++)
     {
         Node *current = findNodeByPosition(last, j);
-        char *p = &current->cadena[0];
-        char *m = &pivot->cadena[0];
-        result = strcmp(p, m);
-        if (result > 0)
+        if (current->number > pivot->number)
         {
             i++;
             Node *auxI = findNodeByPosition(last, i);
@@ -192,7 +168,7 @@ int partition(Node **list, int low, int high)
     swap(auxH, pivot);
     return (i + 1);
 }
-
+//Funcion que ordena la lista con metodo quicksort
 void quickSort(Node **list, int low, int high)
 {
     if (low < high)
@@ -202,7 +178,22 @@ void quickSort(Node **list, int low, int high)
         quickSort(list, pi + 1, high);
     }
 }
+//Funcion que muestra los nodos existentes
+void showList(Node *node)
+{
+    Node *last;
+    int cont = 1;
+    cout << "\n ****** TOP TEN ****** \n";
 
+    while (node != NULL)
+    {
+        cout << cont << "  )  " <<node->cadena << ", " << node->number << endl;
+        last = node;
+        node = node->next;
+        cont++;
+    }
+}
+//Funcion que recibe una lista y la corta al llegar a cierto nodo
 void truncate(Node **list)
 {
     Node *node = *list;
@@ -217,15 +208,34 @@ void truncate(Node **list)
         node = node->next;
     }
 }
+//Funcion encargada de crar un archivo csv
+void createCSV(Node **list)
+{
+    ifstream fe("data.csv");
+    fe.close();
+	remove("data.csv");
+    fstream fout;
+    fout.open("data.csv", ios::out | ios::app);
 
+    Node *node = *list;
+
+    while (node != NULL)
+    {
+        fout << node->cadena << ", " << node->number << "\n";
+        node = node->next;
+    }
+}
+//Funcion que lee un archivo csv
 void readCSV(Node **list)
 {
     fstream fin;
 
     fin.open("data.csv", ios::in);
 
+    int rollnum, roll2, count = 0;
+
     vector<string> row;
-    string line, word;
+    string line, word, temp;
 
     while (!fin.eof())
     {
@@ -240,21 +250,6 @@ void readCSV(Node **list)
         insertarFinal(list, currentNumber, row[0]);
     }
 }
-
-void createCSV(Node **list)
-{
-    fstream fout;
-    fout.open("data.csv", ios::out | ios::app);
-
-    Node *node = *list;
-
-    while (node != NULL)
-    {
-        fout << node->cadena << ", " << node->number << "\n";
-        node = node->next;
-    }
-}
-
 char **funLLenarMatrixChar(int nivel)
 {
     int sizeMatrix;
