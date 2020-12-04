@@ -53,12 +53,13 @@ int main(int argc, char const *argv[])
     cout<<endl<<"GAME OVER"<<endl;
     cout<<endl<<"Su puntaje final es: "<<puntaje<<endl;
 
-    /*
-    int score = 1;
-    insertarFinal(&inicio, score, name);
-    quickSort(&inicio, 0, 9);
+    
+    readCSV(&inicio);
+    insertarFinal(&inicio, puntaje, name);
+    quickSort(&inicio, 0, 100);
+    truncate(&inicio);
     showList(inicio);
     createCSV(&inicio);
-    showList(inicio);
-    */
+
+    return 0;
 }
