@@ -405,7 +405,7 @@ char **funLLenarMatrixChar(int nivel)
 
     for (int i = 0; i < intNumPares; i++)
     {
-        listNumRandom[i] = aleatorio_en_rango(33, 100);
+        listNumRandom[i] = NumRangRandom(33, 100);
         //cout << listNumRandom[i] << " ";
     }
     cout << endl;
