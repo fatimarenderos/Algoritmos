@@ -27,19 +27,19 @@ int main(int argc, char const *argv[])
     char **MatrixPlay = funLLenarMatrixInt(nivel);
     char **MatrixMemory = funLLenarMatrixChar(nivel);
 
-    switch (nivel)
+   switch (nivel)
     {
     case 1:
         sizeMatrix = 4;
-        puntaje = 1800;
+        puntaje = 10000;
         break;
     case 2:
         sizeMatrix = 6;
-        puntaje = 2800;
+        puntaje = 30000;
         break;
     case 3:
         sizeMatrix = 8;
-        puntaje = 4200;
+        puntaje = 50000;
         break;
     default:
         break;
